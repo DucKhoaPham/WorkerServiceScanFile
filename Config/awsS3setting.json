@@ -1,0 +1,13 @@
+{
+  "AWSS3Info": {
+    "FTPFolderRoot": "",
+    "FTPUserName": "",
+    "FTPPassword" :  "",
+    "FolderToUpload": "",
+    "FolderRoot": "",
+    "Endpoint": "",
+    "AccessKeyId": "",
+    "SecretAccessKey": "",
+    "BucketName": ""
+  }
+}
