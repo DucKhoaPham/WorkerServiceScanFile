@@ -28,17 +28,17 @@ namespace WorkerService
 
         public void InstallSetup()
         {
-            IConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
-            var dirname = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var allConfig = Directory.GetFiles(string.Format("{0}{1}", dirname, @"\Config"), "*.json", SearchOption.AllDirectories);
-            foreach (var jsonFilename in allConfig)
-                if (Path.GetFileName(jsonFilename) == "appsettings.json")
-                {
-                    configurationBuilder.AddJsonFile(jsonFilename);
-                    break;
-                }
-            IConfiguration configuration = configurationBuilder.Build();
-            var serviceInfo = configuration.GetSection("ServiceInfo").Get<ServiceInfo>();
+            //IConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+            //var dirname = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            //var allConfig = Directory.GetFiles(string.Format("{0}{1}", dirname, @"\Config"), "*.json", SearchOption.AllDirectories);
+            //foreach (var jsonFilename in allConfig)
+            //    if (Path.GetFileName(jsonFilename) == "appsettings.json")
+            //    {
+            //        configurationBuilder.AddJsonFile(jsonFilename);
+            //        break;
+            //    }
+            //IConfiguration configuration = configurationBuilder.Build();
+            //var serviceInfo = configuration.GetSection("ServiceInfo").Get<ServiceInfo>();
             this.samplingServiceProcessInstaller = new ServiceProcessInstaller();
             this.samplingServiceInstaller = new ServiceInstaller();
             // 
@@ -50,9 +50,9 @@ namespace WorkerService
             // 
             // orderEntryServiceInstaller
             // 
-            this.samplingServiceInstaller.ServiceName = serviceInfo.ServiceName;
-            this.samplingServiceInstaller.DisplayName = serviceInfo.DisplayName;
-            this.samplingServiceInstaller.Description = "Chương trình tự động upload file attachment thư viện";
+            this.samplingServiceInstaller.Description = ServiceInstallConfig.GetConfig().Description;
+            this.samplingServiceInstaller.DisplayName = ServiceInstallConfig.GetConfig().DisplayName;
+            this.samplingServiceInstaller.ServiceName = ServiceInstallConfig.GetConfig().ServiceName;
             this.samplingServiceInstaller.StartType = ServiceStartMode.Automatic;
             // 
             // ProjectInstaller

@@ -20,17 +20,17 @@ namespace WorkerService
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             ConfigureLogging();
             var builder = CreateHostBuilder(args);
-            IConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
-            var dirname = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var allConfig = Directory.GetFiles(string.Format("{0}{1}", dirname, @"\Config"), "*.json", SearchOption.AllDirectories);
-            foreach (var jsonFilename in allConfig)
-                if (Path.GetFileName(jsonFilename) == "appsettings.json")
-                {
-                    configurationBuilder.AddJsonFile(jsonFilename);
-                    break;
-                }
-            IConfiguration configuration = configurationBuilder.Build();
-            serviceInfo = configuration.GetSection("ServiceInfo").Get<ServiceInfo>();
+            //IConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+            //var dirname = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            //var allConfig = Directory.GetFiles(string.Format("{0}{1}", dirname, @"\Config"), "*.json", SearchOption.AllDirectories);
+            //foreach (var jsonFilename in allConfig)
+            //    if (Path.GetFileName(jsonFilename) == "appsettings.json")
+            //    {
+            //        configurationBuilder.AddJsonFile(jsonFilename);
+            //        break;
+            //    }
+            //IConfiguration configuration = configurationBuilder.Build();
+            //serviceInfo = configuration.GetSection("ServiceInfo").Get<ServiceInfo>();
             if (args.Length > 0 && args[0].ToLower() == "-i")
                 Install();
             else if (args.Length > 0 && args[0].ToLower() == "-u")

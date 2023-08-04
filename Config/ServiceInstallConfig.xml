@@ -1,0 +1,16 @@
+﻿<LocalMachineDataSetOfServiceInstallConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ListLocalMachineData>
+    <LocalMachineDataOfServiceInstallConfig>
+      <Key>Description</Key>
+      <Data>Chương trình tự động upload file attachment lên DO thư viện</Data>
+    </LocalMachineDataOfServiceInstallConfig>
+    <LocalMachineDataOfServiceInstallConfig>
+      <Key>DisplayName</Key>
+      <Data>ThuVien AutoUploadFile WinService</Data>
+    </LocalMachineDataOfServiceInstallConfig>
+    <LocalMachineDataOfServiceInstallConfig>
+      <Key>ServiceName</Key>
+      <Data>AutoUploadFileThuVien</Data>
+    </LocalMachineDataOfServiceInstallConfig>
+  </ListLocalMachineData>
+</LocalMachineDataSetOfServiceInstallConfig>
