@@ -2,7 +2,7 @@
   <ListLocalMachineData>
     <LocalMachineDataOfServiceInstallConfig>
       <Key>Description</Key>
-      <Data>Chương trình tự động upload file attachment lên DO thư viện</Data>
+      <Data>Chương trình tự động</Data>
     </LocalMachineDataOfServiceInstallConfig>
     <LocalMachineDataOfServiceInstallConfig>
       <Key>DisplayName</Key>
@@ -10,7 +10,7 @@
     </LocalMachineDataOfServiceInstallConfig>
     <LocalMachineDataOfServiceInstallConfig>
       <Key>ServiceName</Key>
-      <Data>AutoUploadFileThuVien</Data>
+      <Data>AutoUploadFile</Data>
     </LocalMachineDataOfServiceInstallConfig>
   </ListLocalMachineData>
 </LocalMachineDataSetOfServiceInstallConfig>
