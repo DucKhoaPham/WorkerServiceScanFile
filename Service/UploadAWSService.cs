@@ -29,7 +29,7 @@ namespace WorkerService
                 try
                 {
                     string query = @"SELECT TOP 1000 ea.ID,ea.URL FROM eAttachment ea join eBook e ON ea.eBook_ID = e.ID 
-                    WHERE ea.isUpload = 0 and ea.URL is not null";
+                    WHERE ea.isUpload in (0,3,4,5) and ea.URL is not null";
                     connection.Open();
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -68,15 +68,56 @@ namespace WorkerService
             }
             return rowsAffected;
         }
-
-        public int UpdateFail(string connectionString, string ID, int value)
+        public int UpdateAllUpload(string connectionString)
         {
             int rowsAffected = 0;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                    string query = @"UPDATE eAttachment set isUpload = " + value + " WHERE ID = " + ID;
+                    string query = @"UPDATE eAttachment set isUpload = isUpload + 1 WHERE isUpload in (3,4,5)";
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return rowsAffected;
+        }
+        public int UpdateStatusNotFound(string connectionString, string ID)
+        {
+            int rowsAffected = 0;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    string query = @"UPDATE eAttachment set isUpload = 2 WHERE ID = " + ID;
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return rowsAffected;
+        }
+        public int UpdateFail(string connectionString, string ID)
+        {
+            int rowsAffected = 0;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    string query = @"UPDATE eAttachment set isUpload = isUpload + 1 WHERE ID = " + ID;
                     connection.Open();
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -131,13 +172,13 @@ namespace WorkerService
             }
             catch (AmazonS3Exception ex)
             {
-                UpdateFail(connectionString, ID, 3);
+                UpdateFail(connectionString, ID);
                 _logger.Error(ex.Message);
                 throw ex;
             }
             catch (Exception ex)
             {
-                UpdateFail(connectionString, ID, 3);
+                UpdateFail(connectionString, ID);
                 _logger.Error(ex.Message);
                 throw ex;
             }
@@ -211,13 +252,13 @@ namespace WorkerService
             }
             catch (AmazonS3Exception ex)
             {
-                UpdateFail(connectionString, ID, 3);
+                UpdateFail(connectionString, ID);
                 _logger.Error(ex.Message);
                 throw ex;
             }
             catch (Exception ex)
             {
-                UpdateFail(connectionString, ID, 3);
+                UpdateFail(connectionString, ID);
                 _logger.Error(ex.Message);
                 throw ex;
             }

@@ -38,7 +38,7 @@ namespace WorkerService.Controller
                     if (!File.Exists(filePath))
                     {
                         _logger.Info(String.Format("{0} Không thấy đường dẫn {1} - ID: {2}", i + 1, filePath, id));
-                        uploadAWS.UpdateFail(connectionString, id, 2);
+                        uploadAWS.UpdateStatusNotFound(connectionString, id);
                     }
                     else
                     {
@@ -52,7 +52,7 @@ namespace WorkerService.Controller
                             else
                             {
                                 _logger.Info(String.Format("{0} Không thành công {1} - ID: {2}", i + 1, filePath, id));
-                                uploadAWS.UpdateFail(connectionString, id, 3);
+                                uploadAWS.UpdateFail(connectionString, id);
                             }
                                 
                         }
