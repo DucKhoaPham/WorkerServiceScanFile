@@ -57,10 +57,10 @@ namespace WorkerService
             // 
             // ProjectInstaller
             // 
-            Installers.AddRange(new Installer[] 
+            Installers.AddRange(new Installer[]
             {
-				this.samplingServiceProcessInstaller,
-				this.samplingServiceInstaller
+                this.samplingServiceProcessInstaller,
+                this.samplingServiceInstaller
             });
         }
     }
