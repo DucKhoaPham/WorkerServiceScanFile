@@ -41,7 +41,7 @@ namespace WorkerService
                     }
                     catch (Exception ex)
                     {
-                        _logger.LogError(ex,"Unhandled exception occurred in the worker. Sending an alert. Worker will retry after the normal interveral.");
+                        _logger.LogError(ex, "Unhandled exception occurred in the worker. Sending an alert. Worker will retry after the normal interveral.");
                         log.Info(ex.Message);
                     }
 

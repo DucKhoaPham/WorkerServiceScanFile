@@ -43,7 +43,7 @@ namespace WorkerService.Controller
                     else
                     {
                         _logger.Info(String.Format("{0} Đang upload đường dẫn {1} - ID: {2}", i + 1, filePath, id));
-                        
+
                         using (FileStream fileStream = fileInfo.OpenRead())
                         {
                             bool result = await uploadAWS.UploadFileAsync(fileStream, fileInfo.Name, filePath, connectionString, id, awsS3Info);
@@ -54,7 +54,7 @@ namespace WorkerService.Controller
                                 _logger.Info(String.Format("{0} Không thành công {1} - ID: {2}", i + 1, filePath, id));
                                 uploadAWS.UpdateFail(connectionString, id);
                             }
-                                
+
                         }
                     }
                 }
